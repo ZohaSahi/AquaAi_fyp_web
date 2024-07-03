@@ -1,0 +1,90 @@
+﻿<!-- Header.razor -->
+
+<header class="header">
+    <a href="#" class="logo">
+        <img src="css/images/AquaAiLogo.jpg" alt="AquaAi Logo" class="logo-image">Aqua<span>Ai</span>
+    </a>
+    <nav class="navbar" @onclick="ToggleNavbar">
+        <NavLink href="home">Home</NavLink>
+        <NavLink href="About">About Us</NavLink>
+        <NavLink href="services">Services</NavLink>
+        <NavLink href="solution">Our Solution</NavLink>
+        <NavLink href="whyaquaai">Why AquaAi</NavLink>
+    </nav>
+    <div class="icons">
+        <div id="menu-btn" @onclick="ToggleNavbar" class="fas fa-bars"></div>
+        <div id="login-btn" @onclick="ToggleLoginForm" class="fas fa-user"></div>
+    </div>
+    <form action="" class="login-form" style="display: @(isLoginFormActive ? "block" : "none")">
+        <h3>login form</h3>
+        <input type="email" placeholder="enter your email" class="box">
+        <input type="password" placeholder="enter your password" class="box">
+        <div class="flex">
+            <input type="checkbox" name="" id="remember-me">
+            <label for="remember-me">remember me</label>
+            <a href="#">forgot password?</a>
+        </div>
+        <input type="submit" value="login now" class="btn">
+        <p>don't have an account <a href="#">create one!</a></p>
+    </form>
+</header>
+<div class="main-content">
+    @if (isNavbarActive)
+    {
+        <div>
+            <HomePage />
+        </div>
+    }
+    else if (isAboutPageActive)
+    {
+        <div>
+            <AboutPage />
+        </div>
+    }
+    else if (isServicesPageActive)
+    {
+        <div>
+            <ServicesPage />
+        </div>
+    }
+    else if (isWhyAquaAiPageActive)
+    {
+        <div>
+            <WhyAquaAiPage />
+        </div>
+    }
+    else if (isSolutionPageActive)
+    {
+        <div>
+            <SolutionPage />
+        </div>
+    }
+    else if (isContactPageActive)
+    {
+        <div>
+            <ContactPage />
+        </div>
+    }
+</div>
+
+@code {
+    bool isNavbarActive = false;
+    bool isLoginFormActive = false;
+    bool isAboutPageActive = false;
+    bool isServicesPageActive = false;
+    bool isWhyAquaAiPageActive = false;
+    bool isSolutionPageActive = false;
+    bool isContactPageActive = false;
+
+    void ToggleNavbar()
+    {
+        isNavbarActive = !isNavbarActive;
+        isLoginFormActive = false;
+    }
+
+    void ToggleLoginForm()
+    {
+        isLoginFormActive = !isLoginFormActive;
+        isNavbarActive = false;
+    }
+}
